@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(180deg, #f0f7ec 0%, #f6faf3 100%);
+  color: #263a1e;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #bdd9aa;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #97c07c;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #97c07c 0%, #588a3c 100%);
+}
+
+.generation-badge {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded-full font-medium;
+}

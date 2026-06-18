@@ -1,0 +1,53 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: carbon-forest-backend
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=sqlite:///./data/carbon_forest.db
+    volumes:
+      - backend-db:/app/data
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - carbon-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: carbon-forest-frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- http://localhost:80/ > /dev/null 2>&1 || curl -f http://localhost:80/ > /dev/null 2>&1 || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - carbon-network
+
+volumes:
+  backend-db:
+    name: carbon-forest-db
+
+networks:
+  carbon-network:
+    driver: bridge
