@@ -1,0 +1,60 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+
+# Distribution / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Local SQLite databases (镜像内会用 volume 挂载 /app/data)
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+data/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git / CI
+.git/
+.gitignore
+.github/
+
+# Env files / logs
+.env
+.env.*
+*.log
+
+# Docker
+Dockerfile
+.dockerignore
